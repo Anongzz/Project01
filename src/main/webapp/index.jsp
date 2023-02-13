@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import = "java.io.PrintWriter"%>
 <%
-session.removeAttribute("id");
+session.removeAttribute("id"); //안뇨쇼 깃 첨써바용 -.-
 %>
 <!DOCTYPE html>
 <html>
