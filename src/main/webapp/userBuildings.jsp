@@ -74,7 +74,6 @@ tr:last-child td:last-child {
 	border-radius: 10px;
 	margin: 20px 40px;
 	display: inline-flex;
-	padding: 10px 10px;
 	text-align: left;
 	
 }
@@ -188,9 +187,16 @@ ResultSet rs = pstmt.executeQuery();
 				String bName = rs.getString("buildingName");
 				String bDate = String.valueOf(rs.getDate("buildingCreateTime")); 
 			%>
-			<div class="buildObj1" onclick="location.href='userIndependentBuilding.mvc?data1=<%=bName%>'">
-				<div id = "<%=bName %>" style="position: absolute;" >
-					<p style="position: absolute; top: 36%; width: 180px; top: 80%;"><b><%=bName %></b><br><br>등록일: <%=bDate %></p>
+			<div class="buildObj1" >
+				
+				<div id = "<%=bName %>"  style="position: absolute;" >
+					<div onclick="location.href='userIndependentBuilding.mvc?data1=<%=bName%>'" style="position: absolute; width: 200px; height: 280px;">
+						<p style="position: absolute; width: 180px; margin: 10px 10px;"><b><%=bName %></b><br><br>등록일: <%=bDate %></p>
+					</div>
+				<img alt="edit_building" src="images/edit.png" width="30" height="30" style="position: absolute; left: 200px; ">
+				<img alt="delete_building" src="images/delete.png" width="30" height="30" style="position: absolute; left: 200px; top: 40px;" id="<%=bName %>"
+				onclick="deleteBuilding(this)">
+					
 				</div>
 			</div>
 			<%} %>
@@ -202,8 +208,16 @@ ResultSet rs = pstmt.executeQuery();
 		</div>
 	</div>
 	
-	<script type="text/javascript">
-	
+	<script>
+	function deleteBuilding(tagId) {
+		if(confirm("데이터를 삭제하시겠습니까?")){
+			alert(tagId.id);
+		}else {
+			
+		}
+		
+				
+	}
 	
 	</script>
 </body>

@@ -158,7 +158,7 @@ form .txt_field{
   width: 100%;
   padding: 0 5px;
   height: 40px;
-  font-size: 16px;
+  font-size: 20px;
   border: none;
   background: none;
   outline: none;
@@ -168,8 +168,9 @@ form .txt_field{
   top: 50%;
   left: 5px;
   color: #adadad;
+  font:bold;
   transform: translateY(-50%);
-  font-size: 16px;
+  font-size: 20px;
   pointer-events: none;
   transition: .5s;
 }
@@ -273,27 +274,27 @@ ResultSet rs = pstmt.executeQuery(); */
         <div class="txt_field" >
           <input type="text" name="buildingName" required>
           <span></span>
-          <label>buildingName</label>
+          <label>건물 이름</label>
         </div>
         <div class="txt_field" >
           <input type="text" name="basicPrice" required>
           <span></span>
-          <label>basicPrice</label>
+          <label>기본 요금</label>
         </div>
         <div class="txt_field" >
           <input type="text" name="basicTime" required>
           <span></span>
-          <label>basicTime</label>
+          <label>기본 주차 시간</label>
         </div>
         <div class="txt_field" >
           <input type="text" name="addPrice" required>
           <span></span>
-          <label>addPrice</label>
+          <label>추가 요금</label>
         </div>
         <div class="txt_field" >
           <input type="text" name="addTime" required>
           <span></span>
-          <label>addTime</label>
+          <label>추가 요금당 시간</label>
         </div>
         <input type="submit" name="commit" value="추가하기">
         <div class="signup_link">
