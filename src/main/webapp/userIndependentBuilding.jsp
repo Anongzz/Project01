@@ -204,11 +204,10 @@ tr:last-child td:last-child {
 	<p>
 		LoginID:
 		<%=ObjToStringValue%></p>
-	<p>
-		MVCValue:
-		<%=ObjBuildingValue%></p>
+		<input type="button" value="로그아웃" onclick="location.href='LogOut.jsp'"
+			style="position: absolute; right: 10px;">
 	<div class="centerLogin">
-		<h1>received the value sent from the mvc</h1>
+		<h1><%=ObjBuildingValue %>의 주차 현황</h1>
 		<div class="inputZone">
 			<h2>입 출차 목록</h2>
 			<p>출차 하지 않은 차량은 23:59분에 출차 처리됩니다.</p>
@@ -268,15 +267,14 @@ tr:last-child td:last-child {
 			pstmt.close();
 			%>
 		</div>
-		<input type="button" value="로그아웃" onclick="location.href='LogOut.jsp'"
-			style="position: absolute; right: 10px;">
+		
 		<div class="inputValueZone">
 		<%
 		
 		%>
 			<form action="" method="post" style="padding: 10px 10px 10px 10px;">
 				<div style="position: absolute; left: 75px; top: 50px;">
-					<label for="" style="font-size: 30px; padding: 10px 10px 10px 10px;"><b>기본시간(시간)</b></label><br> 
+					<label for="" style="font-size: 30px; padding: 10px 10px 10px 10px;"><b>기본시간(분)</b></label><br> 
 					<p class="priceAndTime"><%=basicTime %></p>
 				</div>
 				<div style="position: absolute; right: 75px; top: 50px;">
@@ -284,7 +282,7 @@ tr:last-child td:last-child {
 					<p class="priceAndTime"><%=basicPrice %></p>
 				</div>
 				<div style="position: absolute; left: 75px; top: 150px;">
-					<label for="" style="font-size: 30px; padding: 10px 10px 10px 10px;"><b>추가시간(시간)</b></label><br> 
+					<label for="" style="font-size: 30px; padding: 10px 10px 10px 10px;"><b>추가시간(분)</b></label><br> 
 					<p class="priceAndTime"><%=addTime %></p>
 				</div>
 				<div style="position: absolute; right: 75px; top: 150px;">

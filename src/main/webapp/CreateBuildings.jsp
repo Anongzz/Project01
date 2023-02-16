@@ -269,12 +269,12 @@ ResultSet rs = pstmt.executeQuery(); */
 <p>로그인ID: <%=ObjToStringValue %></p>
 
 	<div class="centerLogin">
-		<h1>건물 선택 화면</h1>
+		<h1>새로운 주차장 정보 생성</h1>
 		<form method="post" action="userCreateBuilding.jsp">
         <div class="txt_field" >
           <input type="text" name="buildingName" required>
           <span></span>
-          <label>건물 이름</label>
+          <label>주차장 이름(주차장 이름은 생성 후 변경할 수 없습니다.)</label>
         </div>
         <div class="txt_field" >
           <input type="text" name="basicPrice" required>
@@ -284,7 +284,7 @@ ResultSet rs = pstmt.executeQuery(); */
         <div class="txt_field" >
           <input type="text" name="basicTime" required>
           <span></span>
-          <label>기본 주차 시간</label>
+          <label>기본 주차 시간(분)</label>
         </div>
         <div class="txt_field" >
           <input type="text" name="addPrice" required>
@@ -294,7 +294,7 @@ ResultSet rs = pstmt.executeQuery(); */
         <div class="txt_field" >
           <input type="text" name="addTime" required>
           <span></span>
-          <label>추가 요금당 시간</label>
+          <label>추가 요금당 시간(분)</label>
         </div>
         <input type="submit" name="commit" value="추가하기">
         <div class="signup_link">

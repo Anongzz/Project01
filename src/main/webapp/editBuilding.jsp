@@ -70,11 +70,12 @@ tr:last-child td:last-child {
 	cursor: pointer;
 	width: 200px;
 	height: 280px;
-	background: #2FDDE5;
+	background: gray;
 	border-radius: 10px;
 	margin: 20px 40px;
 	display: inline-flex;
-	text-align: left;
+	padding: 10px 10px;
+	text-align: center;
 	
 }
 
@@ -147,14 +148,98 @@ tr:last-child td:last-child {
 	font-size: 20pt;
 	border-bottom: 1px solid black;
 }
-</style>
 
+form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+}
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 20px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  font:bold;
+  transform: translateY(-50%);
+  font-size: 20px;
+  pointer-events: none;
+  transition: .5s;
+}
+.txt_field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: .5s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+  top: -5px;
+  color: #2691d9;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
+  width: 100%;
+}
+.pass{
+  margin: -5px 0 20px 5px;
+  color: #a6a6a6;
+  cursor: pointer;
+}
+.pass:hover{
+  text-decoration: underline;
+}
+input[type="submit"]{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+input[type="submit"]:hover{
+  border-color: #2691d9;
+  transition: .5s;
+}
+
+.signup_link{
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
+}
+.signup_link a{
+  color: #2691d9;
+  text-decoration: none;
+}
+.signup_link a:hover{
+  text-decoration: underline;
+}
+</style>
 </head>
 <body>
 <%
 Object getData = session.getAttribute("id");
+Object getData2 = session.getAttribute("buildingName");
 
 String ObjToStringValue = (String)getData;
+String ObjToBuildingValue=(String)getData2;
 if(ObjToStringValue==null){
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
@@ -169,59 +254,51 @@ Class.forName(driver);
 
 Connection conn = DriverManager.getConnection(url,"root","1234");
 
-//Statement stmt = conn.createStatement();
+/* //Statement stmt = conn.createStatement();
 
 String sql = "SELECT buildingName, buildingCreateTime FROM buildingInformation WHERE userID='"+ObjToStringValue+"'";
 
 PreparedStatement pstmt = conn.prepareStatement(sql);
 
-ResultSet rs = pstmt.executeQuery();
+ResultSet rs = pstmt.executeQuery(); */
+
+
+
+
+
 
 %>
 <p>로그인ID: <%=ObjToStringValue %></p>
-<input type="button" value="로그아웃" onclick="location.href='LogOut.jsp'"
-			style="position: absolute; right: 10px;">
+<p>주차장이름: <%=ObjToBuildingValue %></p>
+
 	<div class="centerLogin">
-		<h1><%=ObjToStringValue %>님의 주차장 목록</h1>
-		<div class="buildings">
-			
-			<%while(rs.next()){ 
-				String bName = rs.getString("buildingName");
-				String bDate = String.valueOf(rs.getDate("buildingCreateTime")); 
-			%>
-			<div class="buildObj1" >
-				
-				<div id = "<%=bName %>"  style="position: absolute;" >
-					<div onclick="location.href='userIndependentBuilding.mvc?data1=<%=bName%>'" style="position: absolute; width: 200px; height: 280px;">
-						<p style="position: absolute; width: 180px; margin: 10px 10px;"><b><%=bName %></b><br><br>등록일: <%=bDate %></p>
-					</div>
-				<img alt="edit_building" src="images/edit.png" width="30" height="30" style="position: absolute; left: 200px; " onclick="location.href='editBuilding.mvc?data1=<%=ObjToStringValue%>&data2=<%=bName %>'">
-				<img alt="delete_building" src="images/delete.png" width="30" height="30" style="position: absolute; left: 200px; top: 40px;" id="<%=bName %>"
-				onclick="(function(){if(confirm('데이터를 삭제하시겠습니까?')){location.href='deleteBuilding.mvc?data1=<%=ObjToStringValue%>&data2=<%=bName %>';}else{}})();">
-					
-				</div>
+		<h1>주차장 정보 수정</h1>
+		<form method="post" action="userEditBuilding.jsp">
+        <div class="txt_field" >
+          <input type="text" name="basicPrice" required>
+          <span></span>
+          <label>기본 요금</label>
+        </div>
+        <div class="txt_field" >
+          <input type="text" name="basicTime" required>
+          <span></span>
+          <label>기본 주차 시간(분)</label>
+        </div>
+        <div class="txt_field" >
+          <input type="text" name="addPrice" required>
+          <span></span>
+          <label>추가 요금</label>
+        </div>
+        <div class="txt_field" >
+          <input type="text" name="addTime" required>
+          <span></span>
+          <label>추가 요금당 시간(분)</label>
+        </div>
+        <input type="submit" name="commit" value="수정하기">
+        <div class="signup_link">
+				<a href="userBuildings.jsp" style="font-size: 20px;">뒤로가기</a>
 			</div>
-			<%} %>
-			
-			<div class="buildObj2" onclick="location.href='CreateBuildings.jsp'">
-				<img alt="add_building" src="images/plus.png" width="200" height="200" style="position: absolute;">
-			</div>
-			
-		</div>
+      </form>
 	</div>
-	
-	<script>
-	function deleteBuilding(tagId) {
-		if(confirm("데이터를 삭제하시겠습니까?")){
-			location.href='https://www.naver.com';
-		}else {
-			
-		}
-		
-				
-	}
-	
-	
-	</script>
 </body>
 </html>
