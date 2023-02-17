@@ -46,6 +46,30 @@ public class HomeController extends HttpServlet {
 					session1.setAttribute("buildingName", result);
 					request.setAttribute("result", result);
 					viewName = "userIndependentBuilding.jsp";
+				}else if(url.contains("deleteBuilding.mvc")) {
+					//System.out.println("deleteBuilding.mvc 가 요청함");
+					String str1 = request.getParameter("data1");
+					String str2 = request.getParameter("data2");
+					
+					String result1= str1;
+					String result2= str2;
+					
+					HttpSession session1 = request.getSession();
+					session1.setAttribute("id", result1);
+					session1.setAttribute("buildingName", result2);
+					request.setAttribute("result", result1);
+					viewName = "deleteBuilding.jsp";
+				}else if(url.contains("editBuilding.mvc")) {
+					System.out.println("editBuilding.mvc 가 요청함");
+					
+					String str1 = request.getParameter("data1");
+					String str2 = request.getParameter("data2");
+					
+					HttpSession session1 = request.getSession();
+					session1.setAttribute("id", str1);
+					session1.setAttribute("buildingName", str2);
+					request.setAttribute("result", str1);
+					viewName = "editBuilding.jsp";
 				}
 				
 				RequestDispatcher dis = request.getRequestDispatcher(viewName);
